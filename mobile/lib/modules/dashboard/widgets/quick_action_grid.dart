@@ -81,6 +81,30 @@ class QuickActionGrid extends StatelessWidget {
         color: WinPilotTheme.textMuted, // Gray/Neutral for Terminal
         onTap: () => Get.toNamed('/terminal'),
       ),
+      _ActionTile(
+        icon: Icons.settings_applications_rounded,
+        label: 'Services',
+        color: WinPilotTheme.statusOnline, // Teal/Green
+        onTap: () => Get.toNamed('/services'),
+      ),
+      _ActionTile(
+        icon: Icons.content_paste_rounded,
+        label: 'Clipboard',
+        color: const Color(0xFFE67E22), // Orange/Brown
+        onTap: () => Get.toNamed('/clipboard'),
+      ),
+      _ActionTile(
+        icon: Icons.rocket_launch_rounded,
+        label: 'Apps',
+        color: const Color(0xFFE91E63), // Pink
+        onTap: () => Get.toNamed('/apps'),
+      ),
+      _ActionTile(
+        icon: Icons.print_rounded,
+        label: 'Printers',
+        color: const Color(0xFF607D8B), // Blue Grey
+        onTap: () => Get.toNamed('/printers'),
+      ),
     ];
   }
 

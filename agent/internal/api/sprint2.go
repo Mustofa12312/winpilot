@@ -183,11 +183,4 @@ func (s *Server) handleSetVolume(c *gin.Context) {
 // Printers
 // ─────────────────────────────────────────────────────────────────────────────
 
-func (s *Server) handleListPrinters(c *gin.Context) {
-	printers, err := windows.ListPrinters()
-	if err != nil {
-		fail(c, http.StatusInternalServerError, err.Error())
-		return
-	}
-	success(c, printers)
-}
+

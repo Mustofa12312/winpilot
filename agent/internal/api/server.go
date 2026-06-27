@@ -6,6 +6,7 @@ package api
 import (
 	"net/http"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -137,8 +138,6 @@ func (s *Server) registerRoutes() {
 			protected.GET("/audio", s.handleGetAudio)
 			protected.POST("/audio/volume", s.handleSetVolume)
 
-			// Printers
-			protected.GET("/printers", s.handleListPrinters)
 
 			// Processes (Task Manager)
 			protected.GET("/processes", s.handleListProcesses)
@@ -161,6 +160,27 @@ func (s *Server) registerRoutes() {
 
 			// Terminal
 			protected.POST("/terminal/execute", s.handleTerminalExecute)
+
+			// Media
+			protected.POST("/media/mute", s.handleMediaMute)
+			protected.POST("/media/playpause", s.handleMediaPlayPause)
+
+			// Clipboard
+			protected.GET("/clipboard", s.handleClipboardGet)
+			protected.POST("/clipboard", s.handleClipboardSet)
+
+			// Services
+			protected.GET("/services", s.handleListServices)
+			protected.POST("/services/:name/toggle", s.handleToggleService)
+
+			// Apps
+			protected.POST("/apps/launch", s.handleAppLaunch)
+
+			// Printers
+			protected.GET("/printers", s.handleListPrinters)
+
+			// AI Command Center
+			protected.POST("/ai/command", s.handleAICommand)
 		}
 	}
 }

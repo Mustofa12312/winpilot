@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:winpilot_mobile/core/theme/app_theme.dart';
 import 'package:winpilot_mobile/core/network/api_client.dart';
 import 'package:winpilot_mobile/modules/dashboard/models/metrics_model.dart';
 
@@ -14,6 +16,11 @@ class DashboardController extends GetxController {
   final _isOnline = false.obs;
   final _isLoading = true.obs;
   final _notifications = <WinNotification>[].obs;
+  
+  // AI Command
+  final aiTextCtrl = TextEditingController();
+  final isAILoading = false.obs;
+
   final _healthScore = 0.obs;
   final _wsConnected = false.obs;
 
@@ -120,6 +127,42 @@ class DashboardController extends GetxController {
 
   Future<void> lock() async {
     await ApiClient.to.post('/api/v1/power/lock');
+  }
+
+  Future<void> toggleMute() async {
+    await ApiClient.to.post('/api/v1/media/mute');
+  }
+
+  Future<void> togglePlayPause() async {
+    await ApiClient.to.post('/api/v1/media/playpause');
+  }
+
+  Future<void> submitAICommand() async {
+    final text = aiTextCtrl.text.trim();
+    if (text.isEmpty) return;
+
+    isAILoading.value = true;
+    try {
+      final res = await ApiClient.to.post('/api/v1/ai/command', data: {'command': text});
+      
+      final msg = res.data['message'] ?? 'Perintah dipahami.';
+      final isSuccess = res.data['success'] ?? true;
+      
+      Get.snackbar(
+        isSuccess ? 'Keajaiban AI ✨' : 'AI Command',
+        msg,
+        backgroundColor: isSuccess ? WinPilotTheme.primaryBlue : WinPilotTheme.bgCard,
+        colorText: Colors.white,
+      );
+      
+      if (isSuccess) {
+        aiTextCtrl.clear();
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Gagal memproses bahasa natural.');
+    } finally {
+      isAILoading.value = false;
+    }
   }
 
   @override

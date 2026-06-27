@@ -36,12 +36,16 @@ class DashboardScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     sliver: SliverList(
                       delegate: SliverChildListDelegate([
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 16),
+                        _buildAICommandBar(ctrl),
+                        const SizedBox(height: 16),
                         _buildStatusBar(ctrl),
                         const SizedBox(height: 20),
                         _buildHealthAndMetrics(ctrl),
                         const SizedBox(height: 20),
                         _buildQuickActions(ctrl),
+                        const SizedBox(height: 20),
+                        _buildMediaControls(ctrl),
                         const SizedBox(height: 20),
                         _buildDiskSection(ctrl),
                         const SizedBox(height: 20),
@@ -112,6 +116,51 @@ class DashboardScreen extends StatelessWidget {
           onPressed: () {},
         ),
       ],
+    );
+  }
+
+  Widget _buildAICommandBar(DashboardController ctrl) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      decoration: BoxDecoration(
+        color: WinPilotTheme.bgCard,
+        borderRadius: Radii.lgBR,
+        border: Border.all(color: WinPilotTheme.borderSubtle),
+        boxShadow: [
+          BoxShadow(
+            color: WinPilotTheme.primaryBlue.withValues(alpha: 0.1),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          )
+        ],
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.auto_awesome_rounded, color: WinPilotTheme.primaryBlue, size: 20),
+          const SizedBox(width: 12),
+          Expanded(
+            child: TextField(
+              controller: ctrl.aiTextCtrl,
+              style: const TextStyle(color: WinPilotTheme.textPrimary, fontSize: 14),
+              decoration: const InputDecoration(
+                hintText: 'Tanya AI (Cth: matikan pc, mute suara...)',
+                hintStyle: TextStyle(color: WinPilotTheme.textMuted, fontSize: 13),
+                border: InputBorder.none,
+                isDense: true,
+              ),
+              onSubmitted: (_) => ctrl.submitAICommand(),
+            ),
+          ),
+          Obx(() {
+            return IconButton(
+              icon: ctrl.isAILoading.value 
+                ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: WinPilotTheme.primaryBlue))
+                : const Icon(Icons.send_rounded, color: WinPilotTheme.primaryBlue, size: 20),
+              onPressed: ctrl.isAILoading.value ? null : ctrl.submitAICommand,
+            );
+          }),
+        ],
+      ),
     );
   }
 
@@ -215,6 +264,32 @@ class DashboardScreen extends StatelessWidget {
         const SizedBox(height: 12),
         QuickActionGrid(ctrl: ctrl),
       ],
+    );
+  }
+
+  Widget _buildMediaControls(DashboardController ctrl) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: WinPilotTheme.bgCard,
+        borderRadius: Radii.lgBR,
+        border: Border.all(color: WinPilotTheme.borderSubtle),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            onPressed: ctrl.togglePlayPause,
+            icon: const Icon(Icons.play_arrow_rounded, color: WinPilotTheme.primaryBlue, size: 28),
+            tooltip: 'Play / Pause',
+          ),
+          IconButton(
+            onPressed: ctrl.toggleMute,
+            icon: const Icon(Icons.volume_off_rounded, color: WinPilotTheme.dangerRed, size: 24),
+            tooltip: 'Mute / Unmute',
+          ),
+        ],
+      ),
     );
   }
 

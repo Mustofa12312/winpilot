@@ -70,14 +70,14 @@ class NotificationScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              _formatTime(n.timestamp),
+                              _formatTime(n.createdAt),
                               style: const TextStyle(fontSize: 11, color: WinPilotTheme.textMuted),
                             ),
                           ],
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          n.message,
+                          n.body,
                           style: const TextStyle(fontSize: 13, color: WinPilotTheme.textSecondary),
                         ),
                       ],

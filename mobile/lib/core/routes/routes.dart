@@ -10,6 +10,10 @@ import 'package:winpilot_mobile/modules/automation/screens/automation_screen.dar
 import 'package:winpilot_mobile/modules/plugins/screens/plugin_screen.dart';
 import 'package:winpilot_mobile/modules/terminal/screens/terminal_screen.dart';
 import 'package:winpilot_mobile/modules/dashboard/screens/notification_screen.dart';
+import 'package:winpilot_mobile/modules/services/screens/service_screen.dart';
+import 'package:winpilot_mobile/modules/clipboard/screens/clipboard_screen.dart';
+import 'package:winpilot_mobile/modules/apps/screens/app_screen.dart';
+import 'package:winpilot_mobile/modules/printers/screens/printer_screen.dart';
 
 class Routes {
   Routes._();
@@ -23,6 +27,10 @@ class Routes {
   static const String plugins = '/plugins';
   static const String terminal = '/terminal';
   static const String notifications = '/notifications';
+  static const String services = '/services';
+  static const String clipboard = '/clipboard';
+  static const String apps = '/apps';
+  static const String printers = '/printers';
 }
 
 List<GetPage> get appPages => [
@@ -36,4 +44,8 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.plugins, page: () => const PluginScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.terminal, page: () => const TerminalScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.notifications, page: () => const NotificationScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.services, page: () => const ServiceScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.clipboard, page: () => const ClipboardScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.apps, page: () => const AppLauncherScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.printers, page: () => const PrinterScreen(), transition: Transition.rightToLeft),
 ];
