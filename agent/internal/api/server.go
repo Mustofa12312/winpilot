@@ -10,29 +10,31 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/winpilot/agent/internal/auth"
+	"github.com/winpilot/agent/internal/automation"
 	"github.com/winpilot/agent/internal/events"
 	"github.com/winpilot/agent/internal/logger"
 	"github.com/winpilot/agent/internal/monitor"
 	wsHub "github.com/winpilot/agent/internal/websocket"
 )
 
-// Server is the HTTP API server.
 type Server struct {
-	router    *gin.Engine
-	auth      *auth.Service
-	bus       *events.Bus
-	collector *monitor.Collector
-	hub       *wsHub.Hub
-	log       *logger.Logger
+	router           *gin.Engine
+	auth             *auth.Service
+	bus              *events.Bus
+	collector        *monitor.Collector
+	automationEngine *automation.Engine
+	hub              *wsHub.Hub
+	log              *logger.Logger
 }
 
 // ServerConfig holds all dependencies.
 type ServerConfig struct {
-	Auth      *auth.Service
-	Bus       *events.Bus
-	Collector *monitor.Collector
-	Hub       *wsHub.Hub
-	Log       *logger.Logger
+	Auth             *auth.Service
+	Bus              *events.Bus
+	Collector        *monitor.Collector
+	AutomationEngine *automation.Engine
+	Hub              *wsHub.Hub
+	Log              *logger.Logger
 }
 
 // NewServer creates and configures the Gin HTTP server.
@@ -45,12 +47,13 @@ func NewServer(cfg ServerConfig) *Server {
 	r.Use(requestLoggerMiddleware(cfg.Log))
 
 	s := &Server{
-		router:    r,
-		auth:      cfg.Auth,
-		bus:       cfg.Bus,
-		collector: cfg.Collector,
-		hub:       cfg.Hub,
-		log:       cfg.Log,
+		router:           r,
+		auth:             cfg.Auth,
+		bus:              cfg.Bus,
+		collector:        cfg.Collector,
+		automationEngine: cfg.AutomationEngine,
+		hub:              cfg.Hub,
+		log:              cfg.Log,
 	}
 
 	s.registerRoutes()
@@ -121,6 +124,12 @@ func (s *Server) registerRoutes() {
 			// Processes (Task Manager)
 			protected.GET("/processes", s.handleListProcesses)
 			protected.POST("/processes/:pid/kill", s.handleKillProcess)
+
+			// Automation
+			protected.GET("/automation/rules", s.handleListRules)
+			protected.POST("/automation/rules", s.handleCreateRule)
+			protected.PUT("/automation/rules/:id/toggle", s.handleToggleRule)
+			protected.DELETE("/automation/rules/:id", s.handleDeleteRule)
 
 			// Notifications
 			protected.GET("/notifications", s.handleListNotifications)

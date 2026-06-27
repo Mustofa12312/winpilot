@@ -11,6 +11,7 @@ import (
 
 	"github.com/winpilot/agent/internal/api"
 	"github.com/winpilot/agent/internal/auth"
+	"github.com/winpilot/agent/internal/automation"
 	"github.com/winpilot/agent/internal/config"
 	"github.com/winpilot/agent/internal/events"
 	"github.com/winpilot/agent/internal/logger"
@@ -29,10 +30,11 @@ type Agent struct {
 	bus       *events.Bus
 	auth      *auth.Service
 	collector *monitor.Collector
-	hub       *ws.Hub
-	server    *api.Server
-	httpSrv   *http.Server
-	cancel    context.CancelFunc
+	hub              *ws.Hub
+	server           *api.Server
+	httpSrv          *http.Server
+	automationEngine *automation.Engine
+	cancel           context.CancelFunc
 }
 
 // New creates and wires up all Agent subsystems.
@@ -73,13 +75,17 @@ func New(cfg *config.Config) (*Agent, error) {
 	hub := ws.NewHub(log)
 	hub.SubscribeToEvents(bus)
 
+	// Automation Engine
+	autoEngine := automation.NewEngine(db, bus, log)
+
 	// API Server
 	apiServer := api.NewServer(api.ServerConfig{
-		Auth:      authSvc,
-		Bus:       bus,
-		Collector: collector,
-		Hub:       hub,
-		Log:       log,
+		Auth:             authSvc,
+		Bus:              bus,
+		Collector:        collector,
+		AutomationEngine: autoEngine,
+		Hub:              hub,
+		Log:              log,
 	})
 
 	httpSrv := &http.Server{
@@ -97,9 +103,10 @@ func New(cfg *config.Config) (*Agent, error) {
 		bus:       bus,
 		auth:      authSvc,
 		collector: collector,
-		hub:       hub,
-		server:    apiServer,
-		httpSrv:   httpSrv,
+		hub:              hub,
+		server:           apiServer,
+		httpSrv:          httpSrv,
+		automationEngine: autoEngine,
 	}, nil
 }
 
@@ -114,6 +121,9 @@ func (a *Agent) Run(ctx context.Context) error {
 
 	// Start OTP cleanup loop
 	go a.cleanupLoop(ctx)
+
+	// Start Automation Engine
+	a.automationEngine.Start()
 
 	// Publish started event
 	a.bus.Publish(events.NewEvent("core", events.EventSystemStarted, map[string]any{
@@ -164,6 +174,7 @@ func (a *Agent) shutdown() error {
 		a.log.Warn("core", "http_shutdown", "forced")
 	}
 
+	a.automationEngine.Stop()
 	a.db.Close()
 	a.log.Info("core", "shutdown", "complete")
 	return nil
@@ -180,6 +191,10 @@ func (a *Agent) metricsLoop(ctx context.Context) {
 			return
 		case <-ticker.C:
 			m := a.collector.Collect()
+			
+			// Evaluate automation rules
+			a.automationEngine.EvaluateMetrics(&m)
+
 			a.bus.PublishAsync(events.NewEvent("monitor", "metrics.update", map[string]any{
 				"cpu":          m.CPU,
 				"ram":          m.RAM,
