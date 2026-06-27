@@ -178,6 +178,14 @@ class DashboardController extends GetxController {
     await ApiClient.to.post('/api/v1/media/playpause');
   }
 
+  Future<void> nextTrack() async {
+    await ApiClient.to.post('/api/v1/media/next');
+  }
+
+  Future<void> prevTrack() async {
+    await ApiClient.to.post('/api/v1/media/prev');
+  }
+
   Future<void> submitAICommand() async {
     final text = aiTextCtrl.text.trim();
     if (text.isEmpty) return;

@@ -398,8 +398,16 @@ class DashboardScreen extends StatelessWidget {
                     onPressed: ctrl.toggleMute,
                   ),
                   IconButton(
+                    icon: const Icon(Icons.skip_previous_rounded, color: Colors.white70),
+                    onPressed: ctrl.prevTrack,
+                  ),
+                  IconButton(
                     icon: const Icon(Icons.play_circle_fill_rounded, color: WinPilotTheme.primaryBlue, size: 32),
                     onPressed: ctrl.togglePlayPause,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.skip_next_rounded, color: Colors.white70),
+                    onPressed: ctrl.nextTrack,
                   ),
                 ],
               ),
