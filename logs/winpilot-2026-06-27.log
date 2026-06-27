@@ -1,0 +1,6 @@
+time=2026-06-27T08:52:52.968+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T08:52:52.986+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T08:52:52.986+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T08:52:52.987+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T08:52:55.975+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=::1
+time=2026-06-27T08:52:56.031+07:00 level=INFO msg="" module=api action="GET /api/v1/system" result=Unauthorized status=401 duration_ms=0 ip=::1
