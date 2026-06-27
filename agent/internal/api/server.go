@@ -101,6 +101,23 @@ func (s *Server) registerRoutes() {
 			protected.POST("/power/sleep", s.handleSleep)
 			protected.POST("/power/lock", s.handleLock)
 
+			// Files
+			protected.GET("/files", s.handleListFiles)
+			protected.GET("/files/download", s.handleDownloadFile)
+			protected.POST("/files/upload", s.handleUploadFile)
+			protected.POST("/files/action", s.handleFileAction)
+
+			// Clipboard
+			protected.GET("/clipboard", s.handleGetClipboard)
+			protected.POST("/clipboard", s.handleSetClipboard)
+
+			// Audio
+			protected.GET("/audio", s.handleGetAudio)
+			protected.POST("/audio/volume", s.handleSetVolume)
+
+			// Printers
+			protected.GET("/printers", s.handleListPrinters)
+
 			// Notifications
 			protected.GET("/notifications", s.handleListNotifications)
 			protected.POST("/notifications/:id/read", s.handleMarkRead)

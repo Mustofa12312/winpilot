@@ -46,10 +46,10 @@ class QuickActionGrid extends StatelessWidget {
         onTap: ctrl.lock,
       ),
       _ActionTile(
-        icon: Icons.bedtime_rounded,
-        label: 'Sleep',
+        icon: Icons.folder_rounded,
+        label: 'Files',
         color: const Color(0xFF9B59B6),
-        onTap: ctrl.sleep,
+        onTap: () => Get.toNamed('/files'),
       ),
       _ActionTile(
         icon: Icons.screenshot_rounded,
