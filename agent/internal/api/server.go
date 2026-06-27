@@ -118,6 +118,10 @@ func (s *Server) registerRoutes() {
 			// Printers
 			protected.GET("/printers", s.handleListPrinters)
 
+			// Processes (Task Manager)
+			protected.GET("/processes", s.handleListProcesses)
+			protected.POST("/processes/:pid/kill", s.handleKillProcess)
+
 			// Notifications
 			protected.GET("/notifications", s.handleListNotifications)
 			protected.POST("/notifications/:id/read", s.handleMarkRead)

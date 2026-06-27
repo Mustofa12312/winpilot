@@ -4,6 +4,8 @@ import 'package:winpilot_mobile/modules/auth/screens/login_screen.dart';
 import 'package:winpilot_mobile/modules/auth/screens/pairing_screen.dart';
 import 'package:winpilot_mobile/modules/dashboard/screens/dashboard_screen.dart';
 import 'package:winpilot_mobile/modules/files/screens/files_screen.dart';
+import 'package:winpilot_mobile/modules/monitor/screens/monitor_screen.dart';
+import 'package:winpilot_mobile/modules/tasks/screens/task_manager_screen.dart';
 
 class Routes {
   Routes._();
@@ -11,6 +13,8 @@ class Routes {
   static const String pairing = '/pairing';
   static const String home = '/';
   static const String files = '/files';
+  static const String monitor = '/monitor';
+  static const String tasks = '/tasks';
 }
 
 List<GetPage> get appPages => [
@@ -18,4 +22,6 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.pairing, page: () => const PairingScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.home, page: () => const DashboardScreen(), transition: Transition.fadeIn),
   GetPage(name: Routes.files, page: () => const FilesScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.monitor, page: () => const MonitorScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.tasks, page: () => const TaskManagerScreen(), transition: Transition.rightToLeft),
 ];

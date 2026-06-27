@@ -25,6 +25,7 @@ class DashboardController extends GetxController {
   int get healthScore => _healthScore.value;
   bool get wsConnected => _wsConnected.value;
   int get unreadCount => _notifications.where((n) => !n.isRead).length;
+  Stream<MetricsSnapshot?> get metricsStream => _metrics.stream;
 
   WebSocketChannel? _channel;
 

@@ -52,16 +52,16 @@ class QuickActionGrid extends StatelessWidget {
         onTap: () => Get.toNamed('/files'),
       ),
       _ActionTile(
-        icon: Icons.screenshot_rounded,
-        label: 'Screenshot',
+        icon: Icons.auto_graph_rounded,
+        label: 'Monitor',
         color: WinPilotTheme.accentCyan,
-        onTap: () {},
+        onTap: () => Get.toNamed('/monitor'),
       ),
       _ActionTile(
-        icon: Icons.content_paste_rounded,
-        label: 'Clipboard',
+        icon: Icons.list_alt_rounded,
+        label: 'Tasks',
         color: WinPilotTheme.successGreen,
-        onTap: () {},
+        onTap: () => Get.toNamed('/tasks'),
       ),
     ];
   }

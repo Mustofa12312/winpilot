@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:winpilot_mobile/core/theme/app_theme.dart';
 import 'package:winpilot_mobile/modules/files/controllers/files_controller.dart';
 import 'package:winpilot_mobile/modules/files/widgets/file_list_item.dart';
+import 'package:winpilot_mobile/modules/files/models/file_model.dart';
 
 class FilesScreen extends StatelessWidget {
   const FilesScreen({super.key});
