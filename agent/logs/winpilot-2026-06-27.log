@@ -80,3 +80,87 @@ time=2026-06-27T11:16:46.008+07:00 level=INFO msg="" module=api action="POST /ap
 time=2026-06-27T11:16:47.275+07:00 level=INFO msg="" module=api action="POST /api/v1/display/brightness" result=OK status=200 duration_ms=0 ip=192.168.1.9
 time=2026-06-27T11:17:01.839+07:00 level=INFO msg="" module=core action=shutdown result=starting
 time=2026-06-27T11:17:01.847+07:00 level=INFO msg="" module=core action=shutdown result=complete
+time=2026-06-27T18:19:45.571+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T18:19:45.572+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T18:19:45.573+07:00 level=WARN msg="" module=windows action=power result="Power commands are only supported on Windows"
+time=2026-06-27T18:19:45.573+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T18:19:45.573+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T18:19:45.573+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/agent/plugins
+time=2026-06-27T18:19:45.573+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
+time=2026-06-27T18:19:45.573+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T18:29:43.012+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:43.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:43.056+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:43.056+07:00 level=INFO msg="" module=api action="GET /api/v1/tasks" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:43.060+07:00 level=INFO msg="" module=api action="GET /api/v1/tasks" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:46.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:49.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:52.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:55.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:29:58.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:01.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:04.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:07.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:10.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:13.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:16.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:19.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:22.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:25.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:28.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:31.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:34.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:37.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:40.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:43.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:46.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:49.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:52.054+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:30:55.055+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor" result="Not Found" status=404 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:04.044+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:04.081+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:04.081+07:00 level=INFO msg="" module=api action="GET /api/v1/processes" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:04.086+07:00 level=INFO msg="" module=api action="GET /api/v1/processes" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:04.086+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:07.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:10.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:13.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:16.081+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:19.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:22.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:25.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:28.081+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:31.082+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:58.408+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:58.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:58.451+07:00 level=INFO msg="" module=api action="GET /api/v1/processes" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:58.452+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:31:58.455+07:00 level=INFO msg="" module=api action="GET /api/v1/processes" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:01.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:04.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:07.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:10.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:13.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:16.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:19.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:22.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:25.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:28.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:31.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:34.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:37.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:40.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:43.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:46.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:49.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:52.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:55.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:32:58.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:01.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:04.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:07.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:10.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:13.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:16.451+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:19.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1
+time=2026-06-27T18:33:22.450+07:00 level=INFO msg="" module=api action="GET /api/v1/metrics" result=Unauthorized status=401 duration_ms=0 ip=127.0.0.1

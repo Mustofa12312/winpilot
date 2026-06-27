@@ -39,7 +39,7 @@ func NewManager(baseDir string, bus *events.Bus, log *logger.Logger) *Manager {
 
 // Start loads all plugins found in the plugins directory
 func (m *Manager) Start() {
-	m.log.Info("plugin", "manager_starting", "dir", m.pluginsDir)
+	m.log.Info("plugin", "manager_starting", "ok", "dir", m.pluginsDir)
 	m.LoadAll()
 }
 

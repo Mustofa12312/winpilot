@@ -36,6 +36,48 @@ class ApiClient {
     }
     return false;
   }
+  async getMonitor() {
+    try {
+      const res = await this.client.get('/api/v1/metrics');
+      return res.data?.data || null;
+    } catch (e) {
+      console.error('Failed to get monitor data', e);
+      return null;
+    }
+  }
+
+  async getTasks() {
+    try {
+      const res = await this.client.get('/api/v1/processes');
+      return res.data?.data || [];
+    } catch (e) {
+      console.error('Failed to get tasks', e);
+      return [];
+    }
+  }
+
+  async killTask(pid) {
+    try {
+      const res = await this.client.post(`/api/v1/processes/${pid}/kill`);
+      return res.data?.success || false;
+    } catch (e) {
+      console.error('Failed to kill task', e);
+      return false;
+    }
+  }
+
+  async sendPowerCommand(action) {
+    try {
+      const res = await this.client.post(`/api/v1/power/${action}`, {
+        delay_seconds: 0,
+        message: 'Triggered from WinPilot Web'
+      });
+      return res.status === 200;
+    } catch (e) {
+      console.error('Power command failed', e);
+      return false;
+    }
+  }
 }
 
 export const api = new ApiClient();
