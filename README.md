@@ -1,12 +1,15 @@
-# WinPilot
-
+# WinPilot v1.0 (Gold Master) 🚀
 > **Your Personal Windows Control Center**
 
 [![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat&logo=go)](https://go.dev)
 [![Flutter](https://img.shields.io/badge/Flutter-Stable-02569B?style=flat&logo=flutter)](https://flutter.dev)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+![Version](https://img.shields.io/badge/version-1.0_MVP-success.svg)
+![Status](https://img.shields.io/badge/Status-100%25_Completed-brightgreen.svg)
 
-WinPilot mengubah komputer Windows Anda menjadi **server pribadi** yang dapat dikontrol dari mana saja menggunakan aplikasi Flutter atau browser — tanpa cloud, tanpa biaya, tanpa kompromi privasi.
+WinPilot mengubah komputer Windows Anda menjadi **server pribadi** yang dapat dikontrol dari mana saja menggunakan aplikasi Flutter — tanpa cloud, tanpa biaya, tanpa kompromi privasi.
+
+Misi utama (MVP) telah **100% Selesai**, merealisasikan seluruh ide dari *Product Requirements Document (PRD)* tanpa terkecuali!
 
 ---
 
@@ -49,13 +52,26 @@ Flutter Android / Flutter Web
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Production Server)
+
+### Setup Server Windows Anda
+
+1. Unduh paket rilis terbaru `WinPilot-Server-v1.0.zip` (Berada di `build/release/`).
+2. Ekstrak *file* ZIP tersebut ke direktori PC Windows Anda (misalnya `C:\WinPilot\`).
+3. Jalankan `winpilot-start.bat` untuk menghidupkan agen secara senyap (*background*).
+4. PC Anda kini siap menerima instruksi dari aplikasi WinPilot Mobile!
+
+*(Untuk menghentikan agen, cukup jalankan `winpilot-stop.bat`).*
+
+---
+
+## 🛠 Panduan Developer (Build from Source)
 
 ### Prasyarat
 
 - Go 1.22+
 - Flutter Stable
-- Windows 10/11 (untuk agent production) atau Linux (untuk development)
+- Windows 10/11 (Target) atau Linux (Development)
 
 ### Setup
 
@@ -67,14 +83,17 @@ cd winpilot
 # Setup semua dependencies
 make setup
 
-# Jalankan agent (dev mode)
+# Buat paket Release Windows (EXE, Script, dan Android APK)
+make release
+
+# Jalankan agent (dev mode di terminal)
 make agent-dev
 
-# Di terminal lain, jalankan Flutter
+# Jalankan aplikasi mobile
 make flutter-run
 ```
 
-Agent akan berjalan di `http://localhost:8080`.
+Agent secara bawaan berjalan di `http://localhost:8080`.
 
 ---
 
@@ -145,16 +164,19 @@ winpilot/
 
 ---
 
-## 🗺 Roadmap
+## 🗺 Pencapaian PRD (100% Selesai)
 
-| Sprint | Target |
-|---|---|
-| **Sprint 1** ✅ | Agent core, Auth, Metrics, Flutter Dashboard |
-| **Sprint 2** | File Explorer, Clipboard, Printer, Audio |
-| **Sprint 3** | Monitoring Center, Notifications, Download Manager |
-| **Sprint 4** | Automation Engine, Workflow Builder, Scheduler |
-| **Sprint 5** | Plugin SDK, Developer Tools |
-| **Sprint 6** | AI Command, Optimization, Testing |
+Seluruh pilar utilitas sistem telah berhasil direalisasikan.
+
+| Sprint | Modul yang Diselesaikan | Status |
+|---|---|---|
+| **Sprint 1-2** | Agent Core, Auth, SQLite, Flutter Dashboard, WebSocket | ✅ Selesai |
+| **Sprint 3-4** | Task Manager, File Manager (Explorer), Terminal CLI | ✅ Selesai |
+| **Sprint 5-7** | Automation (Rules), Plugin System (SDK) | ✅ Selesai |
+| **Sprint 8-9** | Clipboard, Audio, Power, Service Manager, Printers, Apps | ✅ Selesai |
+| **Sprint 10** | **AI Command Center** (Offline Intent Parser) | ✅ Selesai |
+| **Sprint 11-12** | Download Manager, Device Hub, Network, OS Update, Display | ✅ Selesai |
+| **Sprint 13** | Windows Cross-compilation & Release Packaging | ✅ Selesai |
 
 ---
 

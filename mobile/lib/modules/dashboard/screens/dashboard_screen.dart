@@ -274,24 +274,52 @@ class DashboardScreen extends StatelessWidget {
         const SizedBox(height: 16),
         Row(
           children: [
-            Expanded(
-              child: _buildHubCard(
-                icon: Icons.download_rounded,
-                title: 'Downloads',
-                subtitle: 'Remote File Downloader',
-                color: const Color(0xFF673AB7), // Deep Purple
-                onTap: () => Get.toNamed('/downloads'),
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildHubCard(
+                    icon: Icons.download_rounded,
+                    title: 'Downloads',
+                    subtitle: 'Remote Downloader',
+                    color: const Color(0xFF673AB7), // Deep Purple
+                    onTap: () => Get.toNamed('/downloads'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildHubCard(
+                    icon: Icons.usb_rounded,
+                    title: 'Device Hub',
+                    subtitle: 'USB & Hardware',
+                    color: const Color(0xFF009688), // Teal
+                    onTap: () => Get.toNamed('/devices'),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildHubCard(
-                icon: Icons.usb_rounded,
-                title: 'Device Hub',
-                subtitle: 'USB, BT & Hardware',
-                color: const Color(0xFF009688), // Teal
-                onTap: () => Get.toNamed('/devices'),
-              ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildHubCard(
+                    icon: Icons.public_rounded,
+                    title: 'Network',
+                    subtitle: 'IP & Ping Test',
+                    color: const Color(0xFF3F51B5), // Indigo
+                    onTap: () => Get.toNamed('/network'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildHubCard(
+                    icon: Icons.system_update_rounded,
+                    title: 'OS Update',
+                    subtitle: 'Windows Status',
+                    color: const Color(0xFFFF9800), // Orange
+                    onTap: () => Get.toNamed('/update'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -335,22 +363,46 @@ class DashboardScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: WinPilotTheme.bgCard,
+        color: const Color(0xFF1E1E1E), // Dark aesthetic bar
         borderRadius: Radii.lgBR,
         border: Border.all(color: WinPilotTheme.borderSubtle),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
         children: [
-          IconButton(
-            onPressed: ctrl.togglePlayPause,
-            icon: const Icon(Icons.play_arrow_rounded, color: WinPilotTheme.primaryBlue, size: 28),
-            tooltip: 'Play / Pause',
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Audio Control', style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w600)),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.volume_off_rounded, color: WinPilotTheme.dangerRed),
+                    onPressed: ctrl.toggleMute,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.play_circle_fill_rounded, color: WinPilotTheme.primaryBlue, size: 32),
+                    onPressed: ctrl.togglePlayPause,
+                  ),
+                ],
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: ctrl.toggleMute,
-            icon: const Icon(Icons.volume_off_rounded, color: WinPilotTheme.dangerRed, size: 24),
-            tooltip: 'Mute / Unmute',
+          const Divider(color: Colors.white24, height: 24),
+          Row(
+            children: [
+              const Icon(Icons.brightness_low_rounded, color: Colors.white54, size: 20),
+              Expanded(
+                child: Obx(() => Slider(
+                  value: ctrl.brightness.toDouble(),
+                  min: 0, max: 100, divisions: 10,
+                  activeColor: WinPilotTheme.primaryBlue,
+                  inactiveColor: Colors.white24,
+                  onChanged: (val) => ctrl.setBrightness(val),
+                  onChangeEnd: (val) => ctrl.submitBrightness(val),
+                )),
+              ),
+              const Icon(Icons.brightness_high_rounded, color: Colors.white70, size: 20),
+            ],
           ),
         ],
       ),

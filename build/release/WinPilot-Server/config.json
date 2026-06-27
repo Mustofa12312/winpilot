@@ -1,0 +1,29 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "tls": false,
+    "cert_file": "",
+    "key_file": ""
+  },
+  "auth": {
+    "jwt_secret": "winpilot-change-this-secret-in-production",
+    "access_token_expiry": 900000000000,
+    "refresh_token_expiry": 604800000000000,
+    "pairing_code_expiry": 300000000000,
+    "max_login_attempts": 5
+  },
+  "database": {
+    "path": "winpilot.db"
+  },
+  "logging": {
+    "level": "info",
+    "format": "text",
+    "dir": "logs"
+  },
+  "plugins": {
+    "dir": "plugins",
+    "allow_unsigned": true,
+    "resource_budget_mb": 20
+  }
+}

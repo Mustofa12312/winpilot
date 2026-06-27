@@ -17,6 +17,11 @@ agent:
 	@cd $(AGENT_DIR) && $(GO) build -o ../$(BUILD_DIR)/winpilot-agent ./cmd/winpilot/
 	@echo "✅ Agent built: $(BUILD_DIR)/winpilot-agent"
 
+agent-windows:
+	@echo "🔨 Cross-compiling WinPilot Agent for Windows (amd64)..."
+	@cd $(AGENT_DIR) && GOOS=windows GOARCH=amd64 $(GO) build -ldflags="-H windowsgui -s -w" -o ../$(BUILD_DIR)/winpilot-agent.exe ./cmd/winpilot/
+	@echo "✅ Windows Agent built: $(BUILD_DIR)/winpilot-agent.exe"
+
 agent-dev:
 	@echo "🚀 Running WinPilot Agent (dev mode)..."
 	@cd $(AGENT_DIR) && $(GO) run ./cmd/winpilot/
@@ -59,6 +64,20 @@ clean:
 	@cd $(MOBILE_DIR) && $(FLUTTER) clean
 	@echo "✅ Cleaned"
 
+## Release Packaging
+release: clean agent-windows flutter
+	@echo "📦 Creating Release Package..."
+	@mkdir -p $(BUILD_DIR)/release/WinPilot-Server
+	@cp $(BUILD_DIR)/winpilot-agent.exe $(BUILD_DIR)/release/WinPilot-Server/
+	@cp scripts/winpilot-start.bat $(BUILD_DIR)/release/WinPilot-Server/
+	@cp scripts/winpilot-stop.bat $(BUILD_DIR)/release/WinPilot-Server/
+	@cp scripts/install-service.bat $(BUILD_DIR)/release/WinPilot-Server/
+	@cp scripts/uninstall-service.bat $(BUILD_DIR)/release/WinPilot-Server/
+	@cp config.json $(BUILD_DIR)/release/WinPilot-Server/ 2>/dev/null || true
+	@cd $(BUILD_DIR)/release && zip -r WinPilot-Server-v1.0.zip WinPilot-Server
+	@echo "✅ Release package ready: $(BUILD_DIR)/release/WinPilot-Server-v1.0.zip"
+	@echo "✅ Android APK ready: $(MOBILE_DIR)/build/app/outputs/flutter-apk/app-release.apk"
+
 ## Setup
 setup:
 	@echo "🛠 Setting up WinPilot development environment..."
@@ -75,7 +94,8 @@ help:
 	@echo "  Usage: make <target>"
 	@echo ""
 	@echo "  Agent:"
-	@echo "    make agent         Build Go agent binary"
+	@echo "    make agent         Build Go agent binary (host OS)"
+	@echo "    make agent-windows Cross-compile agent for Windows (.exe)"
 	@echo "    make agent-dev     Run agent in dev mode (hot reload)"
 	@echo "    make agent-test    Run Go unit tests"
 	@echo ""
@@ -86,6 +106,7 @@ help:
 	@echo ""
 	@echo "  General:"
 	@echo "    make setup         Install all dependencies"
+	@echo "    make release       Package Windows Agent (.zip) and Android APK"
 	@echo "    make clean         Clean build artifacts"
 	@echo "    make help          Show this help"
 	@echo ""

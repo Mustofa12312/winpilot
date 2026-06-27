@@ -16,6 +16,8 @@ import 'package:winpilot_mobile/modules/apps/screens/app_screen.dart';
 import 'package:winpilot_mobile/modules/printers/screens/printer_screen.dart';
 import 'package:winpilot_mobile/modules/downloads/screens/download_screen.dart';
 import 'package:winpilot_mobile/modules/devices/screens/device_screen.dart';
+import 'package:winpilot_mobile/modules/network/screens/network_screen.dart';
+import 'package:winpilot_mobile/modules/update/screens/update_screen.dart';
 
 class Routes {
   Routes._();
@@ -35,6 +37,8 @@ class Routes {
   static const String printers = '/printers';
   static const String downloads = '/downloads';
   static const String devices = '/devices';
+  static const String network = '/network';
+  static const String update = '/update';
 }
 
 List<GetPage> get appPages => [
@@ -54,4 +58,6 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.printers, page: () => const PrinterScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.downloads, page: () => const DownloadScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.devices, page: () => const DeviceScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.network, page: () => const NetworkScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.update, page: () => const UpdateScreen(), transition: Transition.rightToLeft),
 ];

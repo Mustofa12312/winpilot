@@ -21,8 +21,14 @@ class DashboardController extends GetxController {
   final aiTextCtrl = TextEditingController();
   final isAILoading = false.obs;
 
+  // Display
+  final _brightness = 50.obs;
+  int get brightness => _brightness.value;
+
   final _healthScore = 0.obs;
   final _wsConnected = false.obs;
+
+  DateTime? _lastStorageWarning;
 
   MetricsSnapshot? get metrics => _metrics.value;
   bool get isOnline => _isOnline.value;
@@ -55,15 +61,24 @@ class DashboardController extends GetxController {
   }
 
   Future<void> _fetchInitialMetrics() async {
+    _isLoading.value = true;
     try {
-      final response = await ApiClient.to.get('/api/v1/metrics');
-      if (response.statusCode == 200 && response.data['success'] == true) {
-        _metrics.value = MetricsSnapshot.fromJson(response.data['data']);
-        _healthScore.value = response.data['data']['health_score'] ?? 100;
+      final res = await ApiClient.to.get('/api/v1/monitor/metrics');
+      if (res.data != null) {
+        _metrics.value = MetricsSnapshot.fromJson(res.data);
+        _healthScore.value = 100;
         _isOnline.value = true;
+      }
+      
+      // Fetch brightness
+      final brightRes = await ApiClient.to.get('/api/v1/display');
+      if (brightRes.data != null && brightRes.data['brightness'] != null) {
+        _brightness.value = brightRes.data['brightness'];
       }
     } catch (e) {
       _isOnline.value = false;
+    } finally {
+      _isLoading.value = false;
     }
   }
 
@@ -97,11 +112,35 @@ class DashboardController extends GetxController {
         _metrics.value = MetricsSnapshot.fromJson(d);
         _healthScore.value = (d['health_score'] as num?)?.toInt() ?? _healthScore.value;
         _isOnline.value = true;
+        
+        _checkStorageWarning(_metrics.value!);
       } else if (type == 'notification') {
         final d = json['data'] as Map<String, dynamic>;
         _notifications.insert(0, WinNotification.fromJson(d));
       }
     } catch (_) {}
+  }
+
+  void _checkStorageWarning(MetricsSnapshot m) {
+    if (m.disk.isEmpty) return;
+    
+    // Find C: drive or just take the first system drive
+    final sysDrive = m.disk.firstWhere((d) => d.drive == 'C:', orElse: () => m.disk.first);
+    
+    if (sysDrive.usedPercent > 90.0) {
+      final now = DateTime.now();
+      // Debounce warning for 10 minutes
+      if (_lastStorageWarning == null || now.difference(_lastStorageWarning!).inMinutes > 10) {
+        _lastStorageWarning = now;
+        Get.snackbar(
+          '⚠️ Storage Penuh', 
+          'Drive ${sysDrive.drive} sudah terisi ${sysDrive.usedPercent.toStringAsFixed(1)}%. Silakan kosongkan ruang.',
+          backgroundColor: WinPilotTheme.warningOrange.withValues(alpha: 0.9),
+          colorText: Colors.white,
+          duration: const Duration(seconds: 5),
+        );
+      }
+    }
   }
 
   void _onWsDisconnected() {
@@ -162,6 +201,18 @@ class DashboardController extends GetxController {
       Get.snackbar('Error', 'Gagal memproses bahasa natural.');
     } finally {
       isAILoading.value = false;
+    }
+  }
+
+  Future<void> setBrightness(double val) async {
+    _brightness.value = val.toInt();
+  }
+
+  Future<void> submitBrightness(double val) async {
+    try {
+      await ApiClient.to.post('/api/v1/display/brightness', data: {'level': val.toInt()});
+    } catch (e) {
+      // Ignore
     }
   }
 

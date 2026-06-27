@@ -188,6 +188,12 @@ func (s *Server) registerRoutes() {
 
 			// Device Hub
 			protected.GET("/devices", s.handleListHardwareDevices)
+
+			// Advanced Control (Display, Network, Update)
+			protected.GET("/display", s.handleGetDisplay)
+			protected.POST("/display/brightness", s.handleSetBrightness)
+			protected.GET("/network/info", s.handleNetworkInfo)
+			protected.GET("/os/update", s.handleOSUpdate)
 		}
 	}
 }
