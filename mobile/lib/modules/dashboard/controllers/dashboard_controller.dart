@@ -5,7 +5,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:winpilot_mobile/core/network/api_client.dart';
 import 'package:winpilot_mobile/modules/dashboard/models/metrics_model.dart';
-import 'package:winpilot_mobile/modules/dashboard/models/notification_model.dart';
 
 class DashboardController extends GetxController {
   static DashboardController get to => Get.find();
@@ -123,6 +122,7 @@ class DashboardController extends GetxController {
     await ApiClient.to.post('/api/v1/power/lock');
   }
 
+  @override
   Future<void> refresh() async {
     await _fetchInitialMetrics();
   }

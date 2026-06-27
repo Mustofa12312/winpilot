@@ -106,7 +106,7 @@ class _CreateRuleScreenState extends State<CreateRuleScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DropdownButtonFormField<String>(
-                    value: _triggerType,
+                    initialValue: _triggerType,
                     dropdownColor: WinPilotTheme.bgSurface,
                     style: const TextStyle(color: WinPilotTheme.textPrimary),
                     items: const [
@@ -125,7 +125,7 @@ class _CreateRuleScreenState extends State<CreateRuleScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            value: _metricName,
+                            initialValue: _metricName,
                             dropdownColor: WinPilotTheme.bgSurface,
                             style: const TextStyle(color: WinPilotTheme.textPrimary),
                             items: const [
@@ -138,7 +138,7 @@ class _CreateRuleScreenState extends State<CreateRuleScreen> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            value: _operator,
+                            initialValue: _operator,
                             dropdownColor: WinPilotTheme.bgSurface,
                             style: const TextStyle(color: WinPilotTheme.textPrimary),
                             items: const [
@@ -185,7 +185,7 @@ class _CreateRuleScreenState extends State<CreateRuleScreen> {
               child: Column(
                 children: [
                   DropdownButtonFormField<String>(
-                    value: _actionType,
+                    initialValue: _actionType,
                     dropdownColor: WinPilotTheme.bgSurface,
                     style: const TextStyle(color: WinPilotTheme.textPrimary),
                     items: const [

@@ -67,7 +67,7 @@ class FilesScreen extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: ctrl.files.length,
-            separatorBuilder: (_, __) => const Divider(height: 1, indent: 64),
+            separatorBuilder: (context, index) => const Divider(height: 1, indent: 64),
             itemBuilder: (context, index) {
               final file = ctrl.files[index];
               return FileListItem(
