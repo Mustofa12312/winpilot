@@ -181,6 +181,13 @@ func (s *Server) registerRoutes() {
 
 			// AI Command Center
 			protected.POST("/ai/command", s.handleAICommand)
+
+			// Download Manager
+			protected.POST("/downloads/start", s.handleStartDownload)
+			protected.GET("/downloads", s.handleListDownloads)
+
+			// Device Hub
+			protected.GET("/devices", s.handleListHardwareDevices)
 		}
 	}
 }

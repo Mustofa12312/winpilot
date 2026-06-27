@@ -260,10 +260,74 @@ class DashboardScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _SectionTitle('Quick Actions'),
-        const SizedBox(height: 12),
+        const Text(
+          'Quick Actions',
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: WinPilotTheme.textPrimary),
+        ),
+        const SizedBox(height: 16),
         QuickActionGrid(ctrl: ctrl),
+        const SizedBox(height: 24),
+        const Text(
+          'Ecosystem Hubs',
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: WinPilotTheme.textPrimary),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(
+              child: _buildHubCard(
+                icon: Icons.download_rounded,
+                title: 'Downloads',
+                subtitle: 'Remote File Downloader',
+                color: const Color(0xFF673AB7), // Deep Purple
+                onTap: () => Get.toNamed('/downloads'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _buildHubCard(
+                icon: Icons.usb_rounded,
+                title: 'Device Hub',
+                subtitle: 'USB, BT & Hardware',
+                color: const Color(0xFF009688), // Teal
+                onTap: () => Get.toNamed('/devices'),
+              ),
+            ),
+          ],
+        ),
       ],
+    );
+  }
+
+  Widget _buildHubCard({required IconData icon, required String title, required String subtitle, required Color color, required VoidCallback onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: Radii.lgBR,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: WinPilotTheme.bgCard,
+          borderRadius: Radii.lgBR,
+          border: Border.all(color: WinPilotTheme.borderSubtle),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: color, size: 28),
+            const SizedBox(height: 12),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.w700, color: WinPilotTheme.textPrimary, fontSize: 14)),
+            const SizedBox(height: 4),
+            Text(subtitle, style: const TextStyle(color: WinPilotTheme.textSecondary, fontSize: 11)),
+          ],
+        ),
+      ),
     );
   }
 
