@@ -54,6 +54,9 @@ class ScreenController extends GetxController {
         options: Options(responseType: ResponseType.bytes),
       );
       
+      // Prevent updating or looping if user already left the screen while awaiting HTTP
+      if (!isStreaming.value) return;
+
       if (response.data != null) {
         imageBytes.value = Uint8List.fromList(response.data!);
         _frameCount++;

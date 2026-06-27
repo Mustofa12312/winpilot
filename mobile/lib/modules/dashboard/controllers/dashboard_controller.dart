@@ -99,6 +99,8 @@ class DashboardController extends GetxController {
       );
     } catch (e) {
       _wsConnected.value = false;
+      _isOnline.value = false;
+      Future.delayed(const Duration(seconds: 3), _connectWebSocket);
     }
   }
 

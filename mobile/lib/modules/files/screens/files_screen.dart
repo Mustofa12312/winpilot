@@ -32,11 +32,27 @@ class FilesScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.create_new_folder_rounded),
-            onPressed: () {},
+            onPressed: () {
+              final txtCtrl = TextEditingController();
+              Get.defaultDialog(
+                title: 'Folder Baru',
+                content: TextField(
+                  controller: txtCtrl,
+                  decoration: const InputDecoration(hintText: 'Nama folder'),
+                  autofocus: true,
+                ),
+                textConfirm: 'Buat',
+                textCancel: 'Batal',
+                onConfirm: () {
+                  Get.back();
+                  ctrl.createFolder(txtCtrl.text);
+                },
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.upload_file_rounded),
-            onPressed: () {},
+            onPressed: () => ctrl.uploadFile(),
           ),
         ],
       ),
@@ -111,13 +127,29 @@ class FilesScreen extends StatelessWidget {
             title: const Text('Download ke HP', style: TextStyle(color: WinPilotTheme.textPrimary)),
             onTap: () {
               Get.back();
-              // Implement download
+              ctrl.downloadFile(file);
             },
           ),
           ListTile(
             leading: const Icon(Icons.edit_rounded, color: WinPilotTheme.textSecondary),
             title: const Text('Rename', style: TextStyle(color: WinPilotTheme.textPrimary)),
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              final txtCtrl = TextEditingController(text: file.name);
+              Get.defaultDialog(
+                title: 'Rename File',
+                content: TextField(
+                  controller: txtCtrl,
+                  autofocus: true,
+                ),
+                textConfirm: 'Simpan',
+                textCancel: 'Batal',
+                onConfirm: () {
+                  Get.back();
+                  ctrl.renameFile(file, txtCtrl.text);
+                },
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.delete_rounded, color: WinPilotTheme.dangerRed),
