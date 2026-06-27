@@ -272,7 +272,7 @@ class DashboardScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: WinPilotTheme.textPrimary),
         ),
         const SizedBox(height: 16),
-        Row(
+        Column(
           children: [
             Row(
               children: [
@@ -318,6 +318,24 @@ class DashboardScreen extends StatelessWidget {
                     color: const Color(0xFFFF9800), // Orange
                     onTap: () => Get.toNamed('/update'),
                   ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildHubCard(
+                    icon: Icons.monitor_rounded,
+                    title: 'Screen Viewer',
+                    subtitle: 'Live Desktop',
+                    color: const Color(0xFFE91E63), // Pink
+                    onTap: () => Get.toNamed('/screen'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: const SizedBox.shrink(), // Empty placeholder for 2x2 grid alignment
                 ),
               ],
             ),

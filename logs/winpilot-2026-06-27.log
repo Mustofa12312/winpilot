@@ -5,3 +5,19 @@ time=2026-06-27T08:52:52.987+07:00 level=INFO msg="" module=core action=server_s
 time=2026-06-27T08:52:55.975+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=::1
 time=2026-06-27T08:52:56.031+07:00 level=INFO msg="" module=api action="GET /api/v1/system" result=Unauthorized status=401 duration_ms=0 ip=::1
 time=2026-06-27T09:01:08.661+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=::1
+time=2026-06-27T10:56:37.996+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:56:38.058+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:56:38.058+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:57:40.904+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:57:40.905+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:57:40.906+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:57:40.906+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T10:57:40.906+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/plugins
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=clipboard
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=file
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=network
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=power
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=printer
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=system
+time=2026-06-27T10:57:40.907+07:00 level=WARN msg="" module=plugin action=skip_no_manifest result=terminal
+time=2026-06-27T10:57:40.907+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080

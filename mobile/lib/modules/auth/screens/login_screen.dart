@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:winpilot_mobile/core/theme/app_theme.dart';
 import 'package:winpilot_mobile/modules/auth/controllers/auth_controller.dart';
+import 'package:winpilot_mobile/modules/auth/controllers/discovery_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -10,6 +11,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctrl = Get.put(AuthController());
+    final discoveryCtrl = Get.put(DiscoveryController());
 
     return Scaffold(
       body: Container(
@@ -25,6 +27,8 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 48),
 
                   // ─── Card ───────────────────────────────────────────────
+                  _buildRadar(discoveryCtrl, ctrl),
+                  const SizedBox(height: 24),
                   _buildCard(ctrl),
                 ],
               ),
@@ -74,6 +78,68 @@ class LoginScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _buildRadar(DiscoveryController dCtrl, AuthController aCtrl) {
+    return Obx(() {
+      if (dCtrl.discoveredDevices.isEmpty) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            children: [
+              const SizedBox(
+                width: 24, height: 24,
+                child: CircularProgressIndicator(strokeWidth: 2, color: WinPilotTheme.primaryBlue),
+              ),
+              const SizedBox(height: 12),
+              const Text('Mencari PC di jaringan lokal...', style: TextStyle(color: WinPilotTheme.textMuted, fontSize: 13)),
+            ],
+          ),
+        );
+      }
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildLabel('PC Ditemukan (Ketuk untuk connect)'),
+          const SizedBox(height: 12),
+          ...dCtrl.discoveredDevices.map((device) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: InkWell(
+              onTap: () {
+                aCtrl.ipController.text = device.ip;
+                aCtrl.connectToAgent();
+              },
+              borderRadius: Radii.mdBR,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: WinPilotTheme.primaryBlue.withValues(alpha: 0.1),
+                  borderRadius: Radii.mdBR,
+                  border: Border.all(color: WinPilotTheme.primaryBlue.withValues(alpha: 0.3)),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.computer_rounded, color: WinPilotTheme.primaryBlue),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(device.hostname, style: const TextStyle(fontWeight: FontWeight.w700, color: WinPilotTheme.textPrimary)),
+                          Text(device.ip, style: const TextStyle(fontSize: 12, color: WinPilotTheme.textSecondary)),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right_rounded, color: WinPilotTheme.primaryBlue),
+                  ],
+                ),
+              ),
+            ),
+          )),
+        ],
+      );
+    });
   }
 
   Widget _buildCard(AuthController ctrl) {

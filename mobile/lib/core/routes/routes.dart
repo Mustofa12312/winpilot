@@ -18,6 +18,7 @@ import 'package:winpilot_mobile/modules/downloads/screens/download_screen.dart';
 import 'package:winpilot_mobile/modules/devices/screens/device_screen.dart';
 import 'package:winpilot_mobile/modules/network/screens/network_screen.dart';
 import 'package:winpilot_mobile/modules/update/screens/update_screen.dart';
+import 'package:winpilot_mobile/modules/screen/screens/screen_viewer.dart';
 
 class Routes {
   Routes._();
@@ -39,6 +40,7 @@ class Routes {
   static const String devices = '/devices';
   static const String network = '/network';
   static const String update = '/update';
+  static const String screen = '/screen';
 }
 
 List<GetPage> get appPages => [
@@ -60,4 +62,5 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.devices, page: () => const DeviceScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.network, page: () => const NetworkScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.update, page: () => const UpdateScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.screen, page: () => const ScreenViewerScreen(), transition: Transition.rightToLeft),
 ];

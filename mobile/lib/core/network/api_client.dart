@@ -7,6 +7,7 @@ class ApiClient extends GetxService {
   static ApiClient get to => Get.find();
 
   late Dio _dio;
+  Dio get dio => _dio;
   String _baseUrl = 'http://192.168.1.100:8080';
 
   void configure({required String baseUrl}) {

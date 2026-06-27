@@ -143,6 +143,9 @@ func (a *Agent) Run(ctx context.Context) error {
 		"addr":    a.httpSrv.Addr,
 	}))
 
+	// Start V2.0 UDP Auto-Discovery Server
+	go api.StartUDPDiscoveryServer(8888)
+
 	a.log.Info("core", "server_start", "ok", "addr", a.httpSrv.Addr)
 	fmt.Printf("\n")
 	fmt.Printf("  ██╗    ██╗██╗███╗   ██╗██████╗ ██╗██╗      ██████╗ ████████╗\n")
@@ -155,6 +158,7 @@ func (a *Agent) Run(ctx context.Context) error {
 	fmt.Printf("  🚀 WinPilot Agent v%s — Your Personal Windows Control Center\n", version)
 	fmt.Printf("  📡 API Server: http://%s\n", a.httpSrv.Addr)
 	fmt.Printf("  🔌 WebSocket:  ws://%s/ws\n", a.httpSrv.Addr)
+	fmt.Printf("  📡 Discovery:  UDP Broadcast on :8888\n", )
 	fmt.Printf("\n")
 
 	// Start HTTP server

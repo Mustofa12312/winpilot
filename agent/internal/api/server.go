@@ -165,9 +165,6 @@ func (s *Server) registerRoutes() {
 			protected.POST("/media/mute", s.handleMediaMute)
 			protected.POST("/media/playpause", s.handleMediaPlayPause)
 
-			// Clipboard
-			protected.GET("/clipboard", s.handleClipboardGet)
-			protected.POST("/clipboard", s.handleClipboardSet)
 
 			// Services
 			protected.GET("/services", s.handleListServices)
@@ -194,6 +191,7 @@ func (s *Server) registerRoutes() {
 			protected.POST("/display/brightness", s.handleSetBrightness)
 			protected.GET("/network/info", s.handleNetworkInfo)
 			protected.GET("/os/update", s.handleOSUpdate)
+			protected.GET("/screen/capture", s.handleScreenCapture)
 		}
 	}
 }

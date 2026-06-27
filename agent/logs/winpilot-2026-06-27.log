@@ -1,0 +1,20 @@
+time=2026-06-27T10:54:33.749+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:54:33.764+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:54:33.764+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:56:26.259+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:56:26.262+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:56:26.262+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:56:30.660+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:56:30.662+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:56:30.662+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:56:45.881+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:56:45.882+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:56:45.882+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:58:28.296+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T10:58:28.298+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T10:58:28.298+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T10:58:28.298+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T10:58:28.298+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/agent/plugins
+time=2026-06-27T10:58:28.301+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
+time=2026-06-27T10:58:28.301+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T11:04:07.466+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=192.168.1.28
