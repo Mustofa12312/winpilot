@@ -163,7 +163,7 @@ class WinPilotTheme {
       backgroundColor: bgSurface,
       elevation: 0,
       shadowColor: Colors.transparent,
-      indicatorColor: primaryBlue.withOpacity(0.2),
+      indicatorColor: primaryBlue.withValues(alpha: 0.2),
       labelTextStyle: WidgetStateProperty.all(
         const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
       ),

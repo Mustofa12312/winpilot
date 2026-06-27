@@ -120,12 +120,12 @@ class DashboardScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: ctrl.isOnline
-          ? WinPilotTheme.statusOnline.withOpacity(0.1)
-          : WinPilotTheme.statusOffline.withOpacity(0.1),
+          ? WinPilotTheme.statusOnline.withValues(alpha: 0.1)
+          : WinPilotTheme.statusOffline.withValues(alpha: 0.1),
         borderRadius: Radii.lgBR,
         border: Border.all(
           color: ctrl.isOnline
-            ? WinPilotTheme.statusOnline.withOpacity(0.3)
+            ? WinPilotTheme.statusOnline.withValues(alpha: 0.3)
             : WinPilotTheme.borderSubtle,
         ),
       ),
@@ -137,7 +137,7 @@ class DashboardScreen extends StatelessWidget {
               color: ctrl.isOnline ? WinPilotTheme.statusOnline : WinPilotTheme.statusOffline,
               shape: BoxShape.circle,
               boxShadow: ctrl.isOnline ? [
-                BoxShadow(color: WinPilotTheme.statusOnline.withOpacity(0.5), blurRadius: 8),
+                BoxShadow(color: WinPilotTheme.statusOnline.withValues(alpha: 0.5), blurRadius: 8),
               ] : null,
             ),
           ),
@@ -154,7 +154,7 @@ class DashboardScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
               decoration: BoxDecoration(
-                color: WinPilotTheme.primaryBlue.withOpacity(0.15),
+                color: WinPilotTheme.primaryBlue.withValues(alpha: 0.15),
                 borderRadius: Radii.smBR,
               ),
               child: const Text('LIVE', style: TextStyle(
@@ -297,7 +297,7 @@ class DashboardScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: Radii.smBR,
       ),
       child: Row(
@@ -363,10 +363,10 @@ class DashboardScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: n.isRead ? WinPilotTheme.bgCard : WinPilotTheme.primaryBlue.withOpacity(0.08),
+        color: n.isRead ? WinPilotTheme.bgCard : WinPilotTheme.primaryBlue.withValues(alpha: 0.08),
         borderRadius: Radii.lgBR,
         border: Border.all(
-          color: n.isRead ? WinPilotTheme.borderSubtle : WinPilotTheme.primaryBlue.withOpacity(0.3)),
+          color: n.isRead ? WinPilotTheme.borderSubtle : WinPilotTheme.primaryBlue.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [

@@ -64,7 +64,7 @@ class FileListItem extends StatelessWidget {
       leading: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: _iconColor.withOpacity(0.15),
+          color: _iconColor.withValues(alpha: 0.15),
           borderRadius: Radii.mdBR,
         ),
         child: Icon(_icon, color: _iconColor, size: 24),

@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/winpilot/agent/internal/api"
@@ -16,6 +17,7 @@ import (
 	"github.com/winpilot/agent/internal/events"
 	"github.com/winpilot/agent/internal/logger"
 	"github.com/winpilot/agent/internal/monitor"
+	"github.com/winpilot/agent/internal/plugin"
 	"github.com/winpilot/agent/internal/storage"
 	ws "github.com/winpilot/agent/internal/websocket"
 )
@@ -34,6 +36,7 @@ type Agent struct {
 	server           *api.Server
 	httpSrv          *http.Server
 	automationEngine *automation.Engine
+	pluginManager    *plugin.Manager
 	cancel           context.CancelFunc
 }
 
@@ -78,12 +81,17 @@ func New(cfg *config.Config) (*Agent, error) {
 	// Automation Engine
 	autoEngine := automation.NewEngine(db, bus, log)
 
+	// Plugin Manager
+	currentDir, _ := os.Getwd()
+	pluginManager := plugin.NewManager(currentDir, bus, log)
+
 	// API Server
 	apiServer := api.NewServer(api.ServerConfig{
 		Auth:             authSvc,
 		Bus:              bus,
 		Collector:        collector,
 		AutomationEngine: autoEngine,
+		PluginManager:    pluginManager,
 		Hub:              hub,
 		Log:              log,
 	})
@@ -107,6 +115,7 @@ func New(cfg *config.Config) (*Agent, error) {
 		server:           apiServer,
 		httpSrv:          httpSrv,
 		automationEngine: autoEngine,
+		pluginManager:    pluginManager,
 	}, nil
 }
 
@@ -124,6 +133,9 @@ func (a *Agent) Run(ctx context.Context) error {
 
 	// Start Automation Engine
 	a.automationEngine.Start()
+
+	// Start Plugin Manager
+	a.pluginManager.Start()
 
 	// Publish started event
 	a.bus.Publish(events.NewEvent("core", events.EventSystemStarted, map[string]any{

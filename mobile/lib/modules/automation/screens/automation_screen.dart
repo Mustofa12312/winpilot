@@ -120,7 +120,7 @@ class _RuleItemTile extends StatelessWidget {
               Switch(
                 value: rule.isActive,
                 onChanged: (val) => ctrl.toggleRule(rule.id, val),
-                activeColor: WinPilotTheme.primaryBlue,
+                activeThumbColor: WinPilotTheme.primaryBlue,
                 activeTrackColor: WinPilotTheme.primaryBlue.withValues(alpha: 0.2),
                 inactiveThumbColor: WinPilotTheme.textMuted,
                 inactiveTrackColor: WinPilotTheme.bgSurface,

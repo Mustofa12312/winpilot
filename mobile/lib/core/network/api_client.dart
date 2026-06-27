@@ -35,7 +35,7 @@ class ApiClient extends GetxService {
         if (error.response?.statusCode == 401) {
           // Try to refresh token
           final refreshed = await _tryRefreshToken();
-          if (refreshed && error.requestOptions != null) {
+          if (refreshed) {
             final prefs = await SharedPreferences.getInstance();
             error.requestOptions.headers['Authorization'] =
                 'Bearer ${prefs.getString('access_token')}';
@@ -78,6 +78,9 @@ class ApiClient extends GetxService {
 
   Future<Response> post(String path, {dynamic data}) =>
       _dio.post(path, data: data);
+
+  Future<Response> put(String path, {dynamic data}) =>
+      _dio.put(path, data: data);
 
   Future<Response> delete(String path) => _dio.delete(path);
 

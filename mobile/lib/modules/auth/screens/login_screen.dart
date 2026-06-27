@@ -178,9 +178,9 @@ class LoginScreen extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 16),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: WinPilotTheme.dangerRed.withOpacity(0.1),
+                color: WinPilotTheme.dangerRed.withValues(alpha: 0.1),
                 borderRadius: Radii.mdBR,
-                border: Border.all(color: WinPilotTheme.dangerRed.withOpacity(0.3)),
+                border: Border.all(color: WinPilotTheme.dangerRed.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -208,7 +208,7 @@ class LoginScreen extends StatelessWidget {
               onPressed: ctrl.isLoading ? null : ctrl.connectToAgent,
               style: ElevatedButton.styleFrom(
                 backgroundColor: WinPilotTheme.primaryBlue,
-                disabledBackgroundColor: WinPilotTheme.primaryBlue.withOpacity(0.5),
+                disabledBackgroundColor: WinPilotTheme.primaryBlue.withValues(alpha: 0.5),
                 shape: RoundedRectangleBorder(borderRadius: Radii.mdBR),
                 elevation: 0,
               ),
@@ -243,9 +243,9 @@ class LoginScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: WinPilotTheme.primaryBlue.withOpacity(0.08),
+              color: WinPilotTheme.primaryBlue.withValues(alpha: 0.08),
               borderRadius: Radii.mdBR,
-              border: Border.all(color: WinPilotTheme.primaryBlue.withOpacity(0.2)),
+              border: Border.all(color: WinPilotTheme.primaryBlue.withValues(alpha: 0.2)),
             ),
             child: const Row(
               crossAxisAlignment: CrossAxisAlignment.start,

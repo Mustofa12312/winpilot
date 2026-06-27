@@ -1,0 +1,9 @@
+{
+  "id": "demo.hello",
+  "name": "Hello World Plugin",
+  "version": "1.0.0",
+  "author": "WinPilot",
+  "description": "A demo plugin that prints a friendly message.",
+  "entrypoint": "run.sh",
+  "permissions": []
+}

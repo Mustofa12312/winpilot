@@ -6,6 +6,8 @@ import 'package:winpilot_mobile/modules/dashboard/screens/dashboard_screen.dart'
 import 'package:winpilot_mobile/modules/files/screens/files_screen.dart';
 import 'package:winpilot_mobile/modules/monitor/screens/monitor_screen.dart';
 import 'package:winpilot_mobile/modules/tasks/screens/task_manager_screen.dart';
+import 'package:winpilot_mobile/modules/automation/screens/automation_screen.dart';
+import 'package:winpilot_mobile/modules/plugins/screens/plugin_screen.dart';
 
 class Routes {
   Routes._();
@@ -15,6 +17,8 @@ class Routes {
   static const String files = '/files';
   static const String monitor = '/monitor';
   static const String tasks = '/tasks';
+  static const String automation = '/automation';
+  static const String plugins = '/plugins';
 }
 
 List<GetPage> get appPages => [
@@ -24,4 +28,6 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.files, page: () => const FilesScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.monitor, page: () => const MonitorScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.tasks, page: () => const TaskManagerScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.automation, page: () => const AutomationScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.plugins, page: () => const PluginScreen(), transition: Transition.rightToLeft),
 ];

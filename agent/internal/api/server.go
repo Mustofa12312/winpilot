@@ -14,6 +14,7 @@ import (
 	"github.com/winpilot/agent/internal/events"
 	"github.com/winpilot/agent/internal/logger"
 	"github.com/winpilot/agent/internal/monitor"
+	"github.com/winpilot/agent/internal/plugin"
 	wsHub "github.com/winpilot/agent/internal/websocket"
 )
 
@@ -23,6 +24,7 @@ type Server struct {
 	bus              *events.Bus
 	collector        *monitor.Collector
 	automationEngine *automation.Engine
+	pluginManager    *plugin.Manager
 	hub              *wsHub.Hub
 	log              *logger.Logger
 }
@@ -33,6 +35,7 @@ type ServerConfig struct {
 	Bus              *events.Bus
 	Collector        *monitor.Collector
 	AutomationEngine *automation.Engine
+	PluginManager    *plugin.Manager
 	Hub              *wsHub.Hub
 	Log              *logger.Logger
 }
@@ -52,6 +55,7 @@ func NewServer(cfg ServerConfig) *Server {
 		bus:              cfg.Bus,
 		collector:        cfg.Collector,
 		automationEngine: cfg.AutomationEngine,
+		pluginManager:    cfg.PluginManager,
 		hub:              cfg.Hub,
 		log:              cfg.Log,
 	}
@@ -130,6 +134,11 @@ func (s *Server) registerRoutes() {
 			protected.POST("/automation/rules", s.handleCreateRule)
 			protected.PUT("/automation/rules/:id/toggle", s.handleToggleRule)
 			protected.DELETE("/automation/rules/:id", s.handleDeleteRule)
+
+			// Plugins
+			protected.GET("/plugins", s.handleListPlugins)
+			protected.POST("/plugins/:id/run", s.handleRunPlugin)
+			protected.PUT("/plugins/:id/toggle", s.handleTogglePlugin)
 
 			// Notifications
 			protected.GET("/notifications", s.handleListNotifications)

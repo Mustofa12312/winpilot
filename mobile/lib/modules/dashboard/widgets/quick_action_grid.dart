@@ -15,10 +15,10 @@ class QuickActionGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 1.15,
+        crossAxisCount: 4,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 0.85,
       ),
       itemCount: actions.length,
       itemBuilder: (_, i) => actions[i],
@@ -62,6 +62,18 @@ class QuickActionGrid extends StatelessWidget {
         label: 'Tasks',
         color: WinPilotTheme.successGreen,
         onTap: () => Get.toNamed('/tasks'),
+      ),
+      _ActionTile(
+        icon: Icons.smart_toy_rounded,
+        label: 'Automations',
+        color: const Color(0xFF9B59B6),
+        onTap: () => Get.toNamed('/automation'),
+      ),
+      _ActionTile(
+        icon: Icons.extension_rounded,
+        label: 'Plugins',
+        color: WinPilotTheme.warningOrange,
+        onTap: () => Get.toNamed('/plugins'),
       ),
     ];
   }
@@ -122,8 +134,8 @@ class _ActionTile extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: Radii.lgBR,
-            splashColor: color.withOpacity(0.15),
-            highlightColor: color.withOpacity(0.08),
+            splashColor: color.withValues(alpha: 0.15),
+            highlightColor: color.withValues(alpha: 0.08),
             onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
@@ -134,7 +146,7 @@ class _ActionTile extends StatelessWidget {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: color.withOpacity(0.15),
+                      color: color.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(icon, color: color, size: 20),

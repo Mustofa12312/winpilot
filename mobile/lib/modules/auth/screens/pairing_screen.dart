@@ -117,9 +117,9 @@ class PairingScreen extends StatelessWidget {
                         return Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: WinPilotTheme.dangerRed.withOpacity(0.1),
+                            color: WinPilotTheme.dangerRed.withValues(alpha: 0.1),
                             borderRadius: Radii.mdBR,
-                            border: Border.all(color: WinPilotTheme.dangerRed.withOpacity(0.3)),
+                            border: Border.all(color: WinPilotTheme.dangerRed.withValues(alpha: 0.3)),
                           ),
                           child: Row(
                             children: [
