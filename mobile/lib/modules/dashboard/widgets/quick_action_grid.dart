@@ -75,6 +75,12 @@ class QuickActionGrid extends StatelessWidget {
         color: WinPilotTheme.warningOrange,
         onTap: () => Get.toNamed('/plugins'),
       ),
+      _ActionTile(
+        icon: Icons.terminal_rounded,
+        label: 'Terminal',
+        color: WinPilotTheme.textMuted, // Gray/Neutral for Terminal
+        onTap: () => Get.toNamed('/terminal'),
+      ),
     ];
   }
 

@@ -8,6 +8,8 @@ import 'package:winpilot_mobile/modules/monitor/screens/monitor_screen.dart';
 import 'package:winpilot_mobile/modules/tasks/screens/task_manager_screen.dart';
 import 'package:winpilot_mobile/modules/automation/screens/automation_screen.dart';
 import 'package:winpilot_mobile/modules/plugins/screens/plugin_screen.dart';
+import 'package:winpilot_mobile/modules/terminal/screens/terminal_screen.dart';
+import 'package:winpilot_mobile/modules/dashboard/screens/notification_screen.dart';
 
 class Routes {
   Routes._();
@@ -19,6 +21,8 @@ class Routes {
   static const String tasks = '/tasks';
   static const String automation = '/automation';
   static const String plugins = '/plugins';
+  static const String terminal = '/terminal';
+  static const String notifications = '/notifications';
 }
 
 List<GetPage> get appPages => [
@@ -30,4 +34,6 @@ List<GetPage> get appPages => [
   GetPage(name: Routes.tasks, page: () => const TaskManagerScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.automation, page: () => const AutomationScreen(), transition: Transition.rightToLeft),
   GetPage(name: Routes.plugins, page: () => const PluginScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.terminal, page: () => const TerminalScreen(), transition: Transition.rightToLeft),
+  GetPage(name: Routes.notifications, page: () => const NotificationScreen(), transition: Transition.rightToLeft),
 ];

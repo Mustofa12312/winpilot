@@ -105,7 +105,7 @@ class DashboardScreen extends StatelessWidget {
             backgroundColor: WinPilotTheme.dangerRed,
             child: const Icon(Icons.notifications_outlined, color: WinPilotTheme.textPrimary),
           ),
-          onPressed: () {},
+          onPressed: () => Get.toNamed('/notifications'),
         )),
         IconButton(
           icon: const Icon(Icons.settings_outlined, color: WinPilotTheme.textPrimary),

@@ -27,6 +27,8 @@ type Server struct {
 	pluginManager    *plugin.Manager
 	hub              *wsHub.Hub
 	log              *logger.Logger
+	notifications    []map[string]any
+	notifMu          sync.RWMutex
 }
 
 // ServerConfig holds all dependencies.
@@ -58,10 +60,23 @@ func NewServer(cfg ServerConfig) *Server {
 		pluginManager:    cfg.PluginManager,
 		hub:              cfg.Hub,
 		log:              cfg.Log,
+		notifications:    make([]map[string]any, 0),
 	}
 
 	s.registerRoutes()
+	s.subscribeNotifications()
 	return s
+}
+
+func (s *Server) subscribeNotifications() {
+	s.bus.Subscribe("notification", func(evt events.Event) {
+		s.notifMu.Lock()
+		defer s.notifMu.Unlock()
+		s.notifications = append(s.notifications, evt.Data)
+		if len(s.notifications) > 50 {
+			s.notifications = s.notifications[1:]
+		}
+	})
 }
 
 // Handler returns the underlying http.Handler.
@@ -143,6 +158,9 @@ func (s *Server) registerRoutes() {
 			// Notifications
 			protected.GET("/notifications", s.handleListNotifications)
 			protected.POST("/notifications/:id/read", s.handleMarkRead)
+
+			// Terminal
+			protected.POST("/terminal/execute", s.handleTerminalExecute)
 		}
 	}
 }
@@ -375,10 +393,13 @@ func (s *Server) handleLock(c *gin.Context) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 func (s *Server) handleListNotifications(c *gin.Context) {
-	success(c, []gin.H{})
+	s.notifMu.RLock()
+	defer s.notifMu.RUnlock()
+	success(c, s.notifications)
 }
 
 func (s *Server) handleMarkRead(c *gin.Context) {
+	// For simplicity, we just clear the history or do nothing in memory version
 	success(c, gin.H{"message": "marked as read"})
 }
 
