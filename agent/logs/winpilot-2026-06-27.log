@@ -18,3 +18,65 @@ time=2026-06-27T10:58:28.298+07:00 level=INFO msg="" module=plugin action=manage
 time=2026-06-27T10:58:28.301+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
 time=2026-06-27T10:58:28.301+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
 time=2026-06-27T11:04:07.466+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=192.168.1.28
+time=2026-06-27T11:09:03.741+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:09:29.612+07:00 level=INFO msg="" module=core action=shutdown result=starting
+time=2026-06-27T11:09:29.622+07:00 level=INFO msg="" module=core action=shutdown result=complete
+time=2026-06-27T11:10:03.717+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T11:10:03.723+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T11:10:03.723+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T11:10:03.724+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T11:10:03.724+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/agent/plugins
+time=2026-06-27T11:10:03.724+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
+time=2026-06-27T11:10:03.725+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T11:10:56.693+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:11:22.063+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T11:11:22.064+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T11:11:22.064+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T11:11:22.065+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T11:11:22.065+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/agent/plugins
+time=2026-06-27T11:11:22.065+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
+time=2026-06-27T11:11:22.065+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T11:11:51.974+07:00 level=INFO msg="" module=core action=shutdown result=starting
+time=2026-06-27T11:11:51.984+07:00 level=INFO msg="" module=core action=shutdown result=complete
+time=2026-06-27T11:13:38.298+07:00 level=INFO msg="" module=core action=init result=starting version=1.0.0
+time=2026-06-27T11:13:38.300+07:00 level=INFO msg="" module=core action=storage result=ok path=winpilot.db
+time=2026-06-27T11:13:38.300+07:00 level=INFO msg="" module=core action=auth result=ok
+time=2026-06-27T11:13:38.301+07:00 level=INFO msg="" module=automation action=engine_started result=ok
+time=2026-06-27T11:13:38.301+07:00 level=INFO msg="" module=plugin action=manager_starting result=dir !BADKEY=/home/mustofa/Music/gabut/winpilot/agent/plugins
+time=2026-06-27T11:13:38.301+07:00 level=INFO msg="" module=plugin action=loaded result=demo.hello name="Hello World Plugin"
+time=2026-06-27T11:13:38.301+07:00 level=INFO msg="" module=core action=server_start result=ok addr=0.0.0.0:8080
+time=2026-06-27T11:13:51.938+07:00 level=INFO msg="" module=api action="GET /health" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:01.177+07:00 level=INFO msg="" module=api action="POST /api/v1/auth/pair" result=OK status=200 duration_ms=109 ip=192.168.1.9
+time=2026-06-27T11:14:01.310+07:00 level=INFO msg="" module=api action="GET /api/v1/monitor/metrics" result="Not Found" status=404 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:01.488+07:00 level=INFO msg="" module=websocket action=client_connected result=ok device=e5c0aa5a2dac0789ea57c7ecf61ddbe4
+time=2026-06-27T11:14:01.488+07:00 level=INFO msg="" module=api action="GET /ws" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:07.622+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=1 ip=192.168.1.9
+time=2026-06-27T11:14:13.208+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:20.067+07:00 level=INFO msg="" module=api action="GET /api/v1/printers" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:23.754+07:00 level=INFO msg="" module=api action="GET /api/v1/services" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:35.076+07:00 level=INFO msg="" module=api action="GET /api/v1/plugins" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:50.541+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:51.683+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:53.060+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:53.638+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:53.831+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:54.531+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:54.800+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:55.007+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:55.776+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:55.903+07:00 level=INFO msg="" module=api action="POST /api/v1/power/lock" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:14:56.991+07:00 level=INFO msg="" module=api action="GET /api/v1/automation/rules" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:15:21.591+07:00 level=INFO msg="" module=api action="GET /api/v1/processes" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:15:25.739+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:15:40.214+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:15:41.744+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=1 ip=192.168.1.9
+time=2026-06-27T11:15:51.608+07:00 level=INFO msg="" module=api action="GET /api/v1/files" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:17.205+07:00 level=INFO msg="" module=api action="GET /api/v1/clipboard" result=OK status=200 duration_ms=108 ip=192.168.1.9
+time=2026-06-27T11:16:29.458+07:00 level=INFO msg="" module=api action="GET /api/v1/devices" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:33.420+07:00 level=INFO msg="" module=api action="GET /api/v1/network/info" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:41.300+07:00 level=INFO msg="" module=api action="POST /api/v1/media/playpause" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:42.569+07:00 level=INFO msg="" module=api action="POST /api/v1/media/playpause" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:46.008+07:00 level=INFO msg="" module=api action="POST /api/v1/display/brightness" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:16:47.275+07:00 level=INFO msg="" module=api action="POST /api/v1/display/brightness" result=OK status=200 duration_ms=0 ip=192.168.1.9
+time=2026-06-27T11:17:01.839+07:00 level=INFO msg="" module=core action=shutdown result=starting
+time=2026-06-27T11:17:01.847+07:00 level=INFO msg="" module=core action=shutdown result=complete

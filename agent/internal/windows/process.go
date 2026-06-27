@@ -2,8 +2,9 @@
 package windows
 
 import (
-	"errors"
-	"math/rand"
+	"fmt"
+
+	"github.com/shirou/gopsutil/v4/process"
 )
 
 // ProcessInfo represents a running process.
@@ -15,33 +16,52 @@ type ProcessInfo struct {
 	Username    string  `json:"username"`
 }
 
-// ListProcesses returns a list of running processes.
+// ListProcesses returns a list of running processes on Windows using gopsutil.
 func ListProcesses() ([]ProcessInfo, error) {
-	// Stub implementation for cross-platform dev mode.
-	// On Windows, this will be replaced with WMI or syscalls.
-	
-	names := []string{"chrome.exe", "code.exe", "winpilot.exe", "discord.exe", "spotify.exe", "explorer.exe"}
-	
-	var procs []ProcessInfo
-	for i := 0; i < 20; i++ {
-		procs = append(procs, ProcessInfo{
-			PID:         1000 + rand.Intn(9000),
-			Name:        names[rand.Intn(len(names))],
-			MemoryUsage: int64(rand.Intn(1024) * 1024 * 1024), // Random up to 1GB
-			CPUUsage:    rand.Float64() * 15,
-			Username:    "mustofa",
+	procs, err := process.Processes()
+	if err != nil {
+		return nil, fmt.Errorf("failed to list processes: %w", err)
+	}
+
+	var results []ProcessInfo
+	for _, p := range procs {
+		name, err := p.Name()
+		if err != nil || name == "" {
+			continue // Skip processes we can't read
+		}
+
+		// Optionally get CPU and RAM. Errors are ignored because some processes (e.g. System) 
+		// deny access to these metrics without admin rights.
+		cpu, _ := p.CPUPercent()
+		var memUsage int64
+		if memInfo, err := p.MemoryInfo(); err == nil && memInfo != nil {
+			memUsage = int64(memInfo.RSS)
+		}
+
+		user, _ := p.Username()
+
+		results = append(results, ProcessInfo{
+			PID:         int(p.Pid),
+			Name:        name,
+			MemoryUsage: memUsage,
+			CPUUsage:    cpu,
+			Username:    user,
 		})
 	}
-	
-	return procs, nil
+
+	return results, nil
 }
 
 // KillProcess forcefully terminates a process by PID.
 func KillProcess(pid int) error {
-	// Stub implementation
-	if pid <= 0 {
-		return errors.New("invalid PID")
+	p, err := process.NewProcess(int32(pid))
+	if err != nil {
+		return fmt.Errorf("process not found: %w", err)
 	}
-	// Simulated success
+
+	if err := p.Kill(); err != nil {
+		return fmt.Errorf("failed to kill process: %w", err)
+	}
+	
 	return nil
 }

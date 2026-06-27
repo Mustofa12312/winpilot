@@ -20,6 +20,7 @@ import (
 	"github.com/winpilot/agent/internal/plugin"
 	"github.com/winpilot/agent/internal/storage"
 	ws "github.com/winpilot/agent/internal/websocket"
+	"github.com/winpilot/agent/internal/windows"
 )
 
 const version = "1.0.0"
@@ -60,6 +61,9 @@ func New(cfg *config.Config) (*Agent, error) {
 
 	// Event Bus
 	bus := events.New()
+
+	// Windows Power Subscriptions
+	windows.InitPowerSubscribers(bus, log)
 
 	// Auth Service
 	authSvc := auth.NewService(auth.ServiceConfig{
@@ -158,7 +162,13 @@ func (a *Agent) Run(ctx context.Context) error {
 	fmt.Printf("  🚀 WinPilot Agent v%s — Your Personal Windows Control Center\n", version)
 	fmt.Printf("  📡 API Server: http://%s\n", a.httpSrv.Addr)
 	fmt.Printf("  🔌 WebSocket:  ws://%s/ws\n", a.httpSrv.Addr)
-	fmt.Printf("  📡 Discovery:  UDP Broadcast on :8888\n", )
+	fmt.Printf("  📡 Discovery:  UDP Broadcast on :8888\n")
+	
+	// Generate initial OTP for easy pairing
+	if otp, err := a.auth.GeneratePairingOTP(); err == nil {
+		fmt.Printf("\n  🔑 PAIRING OTP: %s (Valid for 5 minutes)\n", otp)
+	}
+	
 	fmt.Printf("\n")
 
 	// Start HTTP server

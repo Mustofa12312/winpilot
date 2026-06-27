@@ -32,6 +32,24 @@ func (s *Server) handleMediaPlayPause(c *gin.Context) {
 	success(c, gin.H{"message": "Play/Pause toggled"})
 }
 
+func (s *Server) handleMediaNext(c *gin.Context) {
+	if runtime.GOOS == "windows" {
+		// Key code for Media Next Track is 176 (0xB0)
+		cmd := exec.Command("powershell", "-c", "$obj = new-object -com wscript.shell; $obj.SendKeys([char]176)")
+		_ = cmd.Run()
+	}
+	success(c, gin.H{"message": "Next track"})
+}
+
+func (s *Server) handleMediaPrev(c *gin.Context) {
+	if runtime.GOOS == "windows" {
+		// Key code for Media Prev Track is 177 (0xB1)
+		cmd := exec.Command("powershell", "-c", "$obj = new-object -com wscript.shell; $obj.SendKeys([char]177)")
+		_ = cmd.Run()
+	}
+	success(c, gin.H{"message": "Previous track"})
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Clipboard Manager
 // ─────────────────────────────────────────────────────────────────────────────

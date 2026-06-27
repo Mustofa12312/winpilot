@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -26,6 +27,11 @@ func ListDirectory(path string) ([]FileInfo, error) {
 	if path == "" {
 		// Default to C:\ on Windows or / on Linux
 		path = "/" // Using / as fallback for Linux dev environment
+	}
+
+	// Special handling for Windows root: list available drives
+	if path == "/" && runtime.GOOS == "windows" {
+		return getWindowsDrives(), nil
 	}
 
 	entries, err := os.ReadDir(path)
@@ -59,6 +65,28 @@ func ListDirectory(path string) ([]FileInfo, error) {
 	}
 
 	return files, nil
+}
+
+// getWindowsDrives returns a list of available Windows drives (A: to Z:).
+func getWindowsDrives() []FileInfo {
+	var drives []FileInfo
+	// Iterate through A to Z to check which drives exist
+	for _, drive := range "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
+		drivePath := string(drive) + ":\\"
+		// Simply stat the root to see if it's accessible
+		if info, err := os.Stat(drivePath); err == nil && info.IsDir() {
+			drives = append(drives, FileInfo{
+				Name:        string(drive) + ":",
+				Path:        drivePath,
+				IsDirectory: true,
+				Size:        0,
+				Extension:   "",
+				ModifiedAt:  info.ModTime(),
+				IsHidden:    false,
+			})
+		}
+	}
+	return drives
 }
 
 // RenameFile renames or moves a file.

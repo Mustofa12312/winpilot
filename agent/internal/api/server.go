@@ -164,6 +164,8 @@ func (s *Server) registerRoutes() {
 			// Media
 			protected.POST("/media/mute", s.handleMediaMute)
 			protected.POST("/media/playpause", s.handleMediaPlayPause)
+			protected.POST("/media/next", s.handleMediaNext)
+			protected.POST("/media/prev", s.handleMediaPrev)
 
 
 			// Services
